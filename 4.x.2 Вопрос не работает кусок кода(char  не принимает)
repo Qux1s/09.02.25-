@@ -1,0 +1,137 @@
+#include <iostream>
+#include <limits>
+
+double userPrintFirstNumber();
+double userPrintSecondNumber();
+char userPrintOperation();
+void printResult(double, double, char);
+bool isContinue();
+void ignoreLine();
+
+int main()
+
+{
+
+	do
+	{
+		double userNumberOne{ userPrintFirstNumber() };
+
+		double userNumberTwo{ userPrintSecondNumber() };
+
+		char userOperation1{ userPrintOperation() };
+
+		printResult(userNumberOne, userNumberTwo, userOperation1);
+
+	} while (isContinue());
+
+
+}
+
+double userPrintFirstNumber()
+
+{
+
+	std::cout << "Enter your first number: ";
+
+	double number{ };
+
+	std::cin >> number;
+
+	return number;
+
+}
+
+double userPrintSecondNumber()
+
+{
+
+	std::cout << "Enter your second number: ";
+
+	double number{ };
+
+	std::cin >> number;
+
+	return number;
+
+}
+
+char userPrintOperation()
+
+{
+	while (true);
+	{
+
+		std::cout << "Enter one of the following: +, -, *, or /: ";
+
+		char userOperation{};
+
+		std::cin >> userOperation;
+
+		ignoreLine();
+
+		switch (userOperation)
+		{
+		case '+':
+		case '-':
+		case '*':
+		case '/':
+			return userOperation;
+		default:
+			std::cout << "Oops, that input is invalid.  Please try again.\n";
+		}
+	}
+}
+
+void printResult(double userFirst, double userSecond, char userOperation)
+
+{
+
+	if (userOperation == '+')
+		std::cout << userFirst << " + " << userSecond << " is " << userFirst + userSecond << '\n';
+	else if (userOperation == '-')
+		std::cout << userFirst << " - " << userSecond << " is " << userFirst - userSecond << '\n';
+	else if (userOperation == '*')
+		std::cout << userFirst << " * " << userSecond << " is " << userFirst * userSecond << '\n';
+	else if (userOperation == '/')
+		std::cout << userFirst << " / " << userSecond << " is " << userFirst / userSecond << '\n';
+}
+
+bool isContinue()
+{
+	std::cout << "Enter 'y' to continue or n to stop: ";
+
+	char userResult{};
+
+	std::cin >> userResult;
+
+	return userResult == 'y';
+}
+
+void ignoreLine()
+{
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+//Вот рабочий
+//char getOperator()
+//{
+//    while (true) // Цикл, пока пользователь не введет допустимые данные
+  //  {
+  //      std::cout << "Enter one of the following: +, -, *, or /: ";
+    //    char operation{};
+      //  std::cin >> operation;
+        //ignoreLine();
+//
+  //      // Проверяем, ввел ли пользователь осмысленные данные
+    //    switch (operation)
+      //  {
+        //case '+':
+        //case '-':
+        //case '*':
+        //case '/':
+           // return operation; // возвращаем символ вызывающей функции
+       // default: // в противном случае сообщаем пользователю, что пошло не так
+          //  std::cout << "Oops, that input is invalid.  Please try again.\n";
+        //}
+    //} // и попробуем еще раз
+//}
