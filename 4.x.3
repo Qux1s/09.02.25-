@@ -1,0 +1,154 @@
+#include <iostream>
+#include <limits>
+
+double userPrintFirstNumber();
+double userPrintSecondNumber();
+char userPrintOperation();
+void printResult(double, double, char);
+bool isContinue();
+void ignoreLine();
+
+int main()
+
+{
+
+	do
+	{
+		double userNumberOne{ userPrintFirstNumber() };
+
+		double userNumberTwo{ userPrintSecondNumber() };
+
+		char userOperation1{ userPrintOperation() };
+
+		printResult(userNumberOne, userNumberTwo, userOperation1);
+
+	} while (isContinue());
+
+
+}
+
+double userPrintFirstNumber()
+
+{
+
+	while (true) 
+	{
+		std::cout << "Enter a first value: ";
+
+		double userFirst{};
+
+		std::cin >> userFirst;
+
+		
+		if (std::cin.fail()) 
+		{
+			std::cin.clear(); 
+
+			ignoreLine();     
+
+			std::cout << "Oops, that input is invalid.  Please try again.\n";
+		}
+		else
+		{
+			ignoreLine(); 
+
+			return userFirst;
+		}
+	}
+
+}
+
+double userPrintSecondNumber()
+
+{
+
+	while (true) 
+	{
+		std::cout << "Enter a second value: ";
+
+		double userSecond{};
+
+		std::cin >> userSecond;
+
+		
+		if (std::cin.fail()) 
+		{
+			
+			std::cin.clear(); 
+
+			ignoreLine();     
+
+			std::cout << "Oops, that input is invalid.  Please try again.\n";
+		}
+		else
+		{
+			ignoreLine(); 
+
+			return userSecond;
+		}
+	}
+}
+
+char userPrintOperation()
+
+{
+	while (true) 
+	{
+		std::cout << "Enter one of the following: +, -, *, or /: ";
+
+		char operation{};
+
+		std::cin >> operation;
+
+		ignoreLine();
+
+		switch (operation)
+		{
+		case '+':
+		case '-':
+		case '*':
+		case '/':
+			return operation; 
+		default: 
+			std::cout << "Oops, that input is invalid.  Please try again.\n";
+		}
+	} 
+}
+
+void printResult(double userFirst, double userSecond, char userOperation)
+
+{
+	switch (userOperation)
+	{
+	case '+':
+		std::cout << userFirst << " + " << userSecond << " is " << userFirst + userSecond << '\n';
+		break;
+	case '-':
+		std::cout << userFirst << " - " << userSecond << " is " << userFirst - userSecond << '\n';
+		break;
+	case '*':
+		std::cout << userFirst << " * " << userSecond << " is " << userFirst * userSecond << '\n';
+		break;
+	case '/':
+		std::cout << userFirst << " / " << userSecond << " is " << userFirst / userSecond << '\n';
+		break;
+	default:
+		std::cerr << "Something went wrong: printResult() got an invalid operator.\n";
+	}
+}
+
+bool isContinue()
+{
+	std::cout << "Enter 'y' to continue or n to stop: ";
+
+	char userResult{};
+
+	std::cin >> userResult;
+
+	return userResult == 'y';
+}
+
+void ignoreLine()
+{
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
