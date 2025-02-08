@@ -1,0 +1,32 @@
+#include <iostream>
+
+int userNumber();
+
+int main()
+{
+    int numberUserTest{ userNumber() };
+
+    for (int count{ 2 }; count <= (numberUserTest / 2); ++count)
+
+        if (numberUserTest % count == 0)
+        {
+            std::cout << "The digit is prime." << "\n";
+            return 0;
+        }
+        else
+            continue;
+
+    std::cout << "The digit is not prime." << "\n";
+
+}
+
+int userNumber()
+{
+    std::cout << "Enter a integer: ";
+
+    int numberFromUser{ 0 };
+
+    std::cin >> numberFromUser;
+
+    return numberFromUser;
+}
