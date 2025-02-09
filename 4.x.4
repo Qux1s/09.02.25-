@@ -1,0 +1,38 @@
+#include <iostream>
+#include "Header.h"
+double heightTower();
+void PrintResultBallDrop(int second, double towerHeight);
+
+
+int main()
+{
+
+	const double towerHeight{ heightTower() };
+
+	PrintResultBallDrop(1, towerHeight);
+	PrintResultBallDrop(2, towerHeight);
+	PrintResultBallDrop(3, towerHeight);
+	PrintResultBallDrop(4, towerHeight);
+	PrintResultBallDrop(5, towerHeight);
+
+}
+
+double heightTower()
+{
+	std::cout << "Enter the height of the tower in meters: ";
+
+	double heightTower{};
+
+	std::cin >> heightTower;
+
+	return heightTower;
+}
+
+void PrintResultBallDrop(int second,double towerHeight)
+{
+	if((towerHeight - (gravityPlanetEarth * second * second))>0)
+	std::cout << "At " << second << " , the ball is at height: " << towerHeight - (gravityPlanetEarth * second * second) / 2 << " meters." << '\n';
+	else
+		std::cout << "At " << second << " seconds, the ball is on the ground.\n";
+
+}
